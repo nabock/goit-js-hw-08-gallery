@@ -84,7 +84,7 @@ const modalOriginalImage = document.querySelector(".lightbox__image")
 
 const imgMarkup = createImageCardsMarkup(images)
 
-gallaryContainer.insertAdjacentHTML('beforeend', imgMarkup)
+gallaryContainer.innerHTML = imgMarkup;
 
 
 
@@ -120,6 +120,7 @@ function createImageCardsMarkup(images) {
 
 gallaryContainer.addEventListener('click', onGallaryContainerClick)
 
+
 function onGallaryContainerClick(event) {
 
   event.preventDefault()
@@ -141,17 +142,20 @@ function onGallaryContainerClick(event) {
 
 
 
+
+
+
 // Closed modal 
 
 modalClose.addEventListener('click', onModalCloseClick);
 
-function onModalCloseClick(event) {
+function onModalCloseClick(_event) {
 
   modal.classList.remove("is-open");
 
   modalOriginalImage.src = ''
 
-  // console.log("close", modalOriginalImage.src = '');
+  // console.log("close", modalClose);
 }
 
 
