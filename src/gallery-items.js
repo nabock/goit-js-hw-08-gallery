@@ -131,17 +131,14 @@ function onGallaryContainerClick(event) {
     return
   }
 
-  const imageUrl = event.target.dataset.source;
+  const urlOrigImg = event.target.dataset.source;
 
   modal.classList.add("is-open");
 
-  modalOriginalImage.src = imageUrl
+  modalOriginalImage.src = urlOrigImg
 
-  // console.log(imageUrl);
+  console.log(urlOrigImg);
 }
-
-
-
 
 
 
