@@ -156,58 +156,58 @@ function onModalCloseClick(_event) {
 }
 
 
+// Closed modal esc.
+
+document.addEventListener('keydown', escModalClose);
+function escModalClose(event) {
+  if (event.keyCode === 27) {
+    modal.classList.remove("is-open")
+    modalOriginalImage.src = ''
+  };
+  return
+};
 
 
-// // Закрытие модалки  клавишей esc ---------------------
-
-// document.addEventListener('keydown', onEscClick);
-// function onEscClick(event) {
-//   if (event.keyCode !== 27) {
-//     return
-//   }
-//   modal.classList.remove("is-open");
-//   modalImage.src = ''
-// }
-// //-----------------------------------------------------------
 
 // // Закрытие модалки кликом по полю модалки ---------------------
 
-// modal.addEventListener('click', onModalWindowClick);
+modal.addEventListener('click', onOutModalWindowClick);
 
-// function onModalWindowClick(event) {
-//   const isModalImageEl = event.target.classList.contains("lightbox__image");
-//   if (isModalImageEl) {
-//     return
-//   }
-//   modal.classList.remove("is-open");
-//   modalImage.src = ''
-// }
+function onOutModalWindowClick(event) {
+  const isModalImageEl = event.target.classList.contains("lightbox__image");
+  if (isModalImageEl) {
+    return
+  }
+  modal.classList.remove("is-open");
+  modalOriginalImage.src = ''
+}
 // //---------------------------------------------------------------
 // // Слайдшоу стрелками  ArrowLeft || ArrowRight---------------------
 
-// const arrayImages = [];
-// images.forEach(({ original }) => {
-//   arrayImages.push(original);
+const arrImgs = [];
+images.forEach(({ original }) => {
+  arrImgs.push(original);
 
-// })
-// // console.log(arrayImages);
+})
+console.log(arrImgs);
 
-// document.addEventListener('keydown', onArrowClick);
-// function onArrowClick(event) {
-//   let newIndex;
-//   const currentId = arrayImages.indexOf(modalImage.src);
-//   if (event.key === 'ArrowLeft') {
-//     if (currentId > -1) {
-//       newIndex = currentId - 1;
-//     }
-//     if (newIndex === -1) {
-//       newIndex = arrayImages.length - 1;
-//     }
-//   } else if (event.key === 'ArrowRight') {
-//     newIndex = currentId + 1;
-//     if (newIndex === arrayImages.length) {
-//       newIndex = 0;
-//     }
-//   }
-//   modalImage.src = arrayImages[newIndex];
-// };
+document.addEventListener('keydown', onBtnArrClick);
+function onBtnArrClick(event) {
+  let newImgIndx;
+  const currentImgId = arrImgs.indexOf(modalOriginalImage.src);
+  if (event.key === 'ArrowLeft') {
+    if (currentImgId > -1) {
+      newImgIndx = currentImgId - 1;
+    }
+    if (newImgIndx === -1) {
+      newImgIndx = arrImgs.length - 1;
+    }
+  } else if (event.key === 'ArrowRight' || 'Space') {
+    newImgIndx = currentImgId + 1;
+    if (newImgIndx === arrImgs.length) {
+      newImgIndx = 0;
+    }
+  }
+
+  modalOriginalImage.src = arrImgs[newImgIndx];
+};
